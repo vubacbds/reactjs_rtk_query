@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-form-item-explain-error {
+  font-size: 12px !important;
+}
+
+.yes {
+  color: red;
+}
+
+.no {
+  color: #333;
+}

@@ -1,0 +1,29 @@
+//Cài eslint & prettier: npm i --dev prettier eslint-plugin-prettier eslint-config-prettier
+//eslint-plugin-prettier: báo lỗi format code sử dụng eslint
+//eslint-config-prettier: tắt các thông báo lỗi của eslint mà xung đột với prettier
+//eslint: báo lỗi cú pháp và các anti-pattern cho code
+//typescript-eslint: báo lỗi cú pháp cho typescript sử dụng eslint 
+// eslint-plugin-react: báo lỗi cú pháp cho react sử dụng eslint 
+//prettier: định dạng cho code đẹp hơn (không phải tự động nhé)
+
+
+{
+  "extends": ["react-app", "prettier"], //Đây là những config có sẵn được sử dụng, chúng ta sẽ mở rộng chúng bằng cách thêm vào những config của riêng mình. ESLint có một cơ chế khá hay cho phép chúng ta "dùng lại" cấu hình của người khác.
+  "plugins": ["prettier"],  //Đây là những plugin được sử dụng để mở rộng hoạt động của ESLint. Ví dụ ESLint không hỗ trợ kiểm tra cú pháp JSX thần thánh, thì bắt buộc chúng ta phải sử dụng plugin để kiểm tra các code đó.
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "arrowParens": "always",
+        "semi": false,
+        "trailingComma": "none",
+        "tabWidth": 2,
+        "endOfLine": "auto",
+        "useTabs": false,
+        "singleQuote": true,
+        "printWidth": 120,
+        "jsxSingleQuote": true
+      }
+    ]
+  }
+}

@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Product from 'page/product'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import ProductDetail from 'page/product/components/productDetail'
+import ScrollToTop from 'utils/scrollToTop'
+import ProductDetailList1 from 'page/product/components/productDetailList1'
+import ProductDetailList2 from 'page/product/components/productDetailList2'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <ScrollToTop>
+        <Routes>
+          <Route path='/' element={<Product />} />
+
+          <Route path='/product/detail' element={<ProductDetail />}>
+            <Route path=':productId' element={<ProductDetailList1 />} />
+            <Route path='list1' element={<ProductDetailList1 />} />
+            <Route index element={<ProductDetailList2 />} />
+          </Route>
+
+          <Route path='*' element={<h5>Không tìm thấy trang</h5>} />
+        </Routes>
+      </ScrollToTop>
+      <ToastContainer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

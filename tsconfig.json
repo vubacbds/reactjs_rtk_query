@@ -18,7 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src" //để import trong ứng dụng react chúng ta dễ dàng hơn
   },
   "include": [
     "src"

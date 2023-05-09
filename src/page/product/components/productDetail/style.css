@@ -1,0 +1,256 @@
+/* .slick-active img{
+  transform: scale(1);
+  animation: phongto 8s 1 ease-in-out;
+} */
+
+/* @keyframes phongto{
+  from {
+    transform: scale(1) translate(0px);
+  }
+  to {
+    transform: scale(1.4) translate(0px);
+  }
+} */
+
+/* .slick-active img:hover {
+  transform: scale(1.2);
+} */
+
+/* antd modal */
+
+/* .modal-zoom  {
+  position: relative !important;
+  top: 2% !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  align-content: center;
+}
+
+.modal-zoom .ant-modal-content {
+  width: 90% !important;
+  padding: 0 !important;
+}
+
+@media (min-width: 600px) { 
+  .modal-zoom .ant-modal-content  {
+    
+    width: 40% !important;
+  }
+}
+
+.modal-zoom .ant-modal-close {
+  position: absolute !important;
+  top: 104% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: block !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.modal-zoom .ant-modal-close svg {
+  color: #fff;
+  width: 30px !important;
+  height: 30px !important;
+} */
+
+/* ------CSS cho Modal Imgae------ */
+.hidden-modal {
+  display: none;
+}
+
+.modal-zoom {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-zoom-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-zoom-body {
+  position: absolute;
+  width: 62%;
+  height: 86%;
+  display: block;
+  background: #fff;
+}
+
+.modal-zoom-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 28px;
+  color: rgb(255, 255, 255);
+  animation: xlen alternate 0.6s;
+}
+
+@keyframes xlen {
+  from {
+    top: 24px;
+  }
+  to {
+    top: 12px;
+  }
+}
+
+.modal-zoom .img-slick {
+  position: relative !important;
+  height: 86vh !important;
+  width: 100% !important;
+}
+
+.modal-zoom .slick-prev:before {
+  content: '<i class=' gg-arrow-left-o '></i>' !important;
+  color: #fff !important;
+  font-size: 40px !important;
+  position: relative;
+  left: -36px !important;
+}
+
+.modal-zoom .slick-next:before {
+  content: '<i class=' gg-arrow-right-o '></i>' !important;
+  color: #fff !important;
+  font-size: 40px !important;
+  position: relative;
+  right: -12px !important;
+}
+
+@media (max-width: 600px) {
+  .modal-zoom-body {
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    display: block;
+    background-color: #fff;
+  }
+  .modal-zoom .img-slick {
+    position: relative !important;
+    height: 50vh !important;
+    width: 100% !important;
+  }
+  .modal-zoom .slick-prev:before {
+    content: '<i class=' gg-arrow-left-o '></i>' !important;
+    color: #fff !important;
+    font-size: 26px !important;
+    position: relative;
+    left: -4px !important;
+  }
+  .modal-zoom .slick-next:before {
+    content: '<i class=' gg-arrow-right-o '></i>' !important;
+    color: #fff !important;
+    font-size: 26px !important;
+    position: relative;
+    right: 0px !important;
+  }
+}
+
+.modal-zoom .slick-slide div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* ------CSS cho Detail Image------ */
+.detail-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-product-image {
+  width: 50%;
+  height: 400px;
+  position: relative;
+}
+
+.detail-product-image .slick-prev:before {
+  content: '<i class=' gg-arrow-left-o '></i>' !important;
+  color: #333 !important;
+  font-size: 40px !important;
+  position: relative;
+  left: -36px !important;
+}
+
+.detail-product-image .slick-next:before {
+  content: '<i class=' gg-arrow-right-o '></i>' !important;
+  color: #333 !important;
+  font-size: 40px !important;
+  position: relative;
+  right: -12px !important;
+}
+
+.slider-image {
+  width: 50px;
+  height: 160px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .detail-product-image {
+    width: 84%;
+    height: 400px;
+    position: relative;
+  }
+
+  .detail-product-image .slick-prev:before {
+    content: '<i class=' gg-arrow-left-o '></i>' !important;
+    color: #333 !important;
+    font-size: 26px !important;
+    position: relative;
+    left: -4px !important;
+  }
+  .detail-product-image .slick-next:before {
+    content: '<i class=' gg-arrow-right-o '></i>' !important;
+    color: #333 !important;
+    font-size: 26px !important;
+    position: relative;
+    right: 0px !important;
+  }
+  .slider-image {
+    width: 60px;
+    height: 90px;
+  }
+}
+
+.slider-2 img {
+  padding: 8px !important;
+  width: 80% !important;
+  /* opacity: 0.5 !important; */
+  opacity: 0.5 !important;
+}
+
+.slider-2 .slick-current img {
+  opacity: 1 !important;
+}
+
+.router-demo {
+  margin-top: 500px;
+}
+
+.icon-zoom {
+  display: block;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 24px;
+}
+
+.title {
+  margin: 10px 0;
+  font-family: 'Roboto Condensed', sans-serif;
+}

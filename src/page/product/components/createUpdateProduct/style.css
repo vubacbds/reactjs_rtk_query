@@ -1,0 +1,75 @@
+.image-old-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-old {
+  width: 84.67px;
+  height: 84.67px;
+}
+
+.image-old:hover {
+  width: 84.67px;
+  height: 84.67px;
+  opacity: 0.2;
+}
+
+.div-image-old {
+  position: relative;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+}
+
+/* .div-image-old:hover {
+  opacity: 0.5;
+} */
+
+.box-icon-delete {
+  display: none;
+}
+
+.div-image-old:hover .box-icon-delete {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* transform: translateX(-50%) translateY(-50%); */
+  /* background: rgba(0, 0, 0, 0.4); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-image-old:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 8px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.icon-delete-image-old {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.icon-delete-image-old:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+/* .ant-upload-list-picture-card {
+  width: 102px !important;
+  height: 102px !important;
+} */
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select {
+  margin-bottom: 0px !important;
+}
