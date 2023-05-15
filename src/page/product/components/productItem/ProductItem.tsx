@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Card } from 'antd'
+import { Button, Card, Popconfirm } from 'antd'
 import { product } from 'types/product.type'
 import { EditOutlined, DeleteOutlined, InfoCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
@@ -42,7 +42,15 @@ const ProductItem = ({ product, handleDeleteProduct, handleStartUpdateProduct }:
               // onClick={() => setIsModalZoom(true)}
             />,
             <EditOutlined key='edit' onClick={() => handleStartUpdateProduct(product)} title='Sửa sản phẩm' />,
-            <DeleteOutlined key='delete' onClick={() => handleDeleteProduct(product._id)} title='Xóa sản phẩm' />,
+            <Popconfirm
+              placement='top'
+              title={`Xóa sản phẩm này ?`}
+              onConfirm={() => handleDeleteProduct(product._id)}
+              cancelText='Hủy'
+              okText='Xóa'
+            >
+              <DeleteOutlined key='delete' title='Xóa sản phẩm' />
+            </Popconfirm>,
             <RightCircleOutlined key='next ' onClick={() => sliderIndex.slickNext()} title='Chuyển ảnh' />
           ]}
           hoverable

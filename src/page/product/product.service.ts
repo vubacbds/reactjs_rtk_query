@@ -5,7 +5,9 @@ export const productApi = createApi({
   reducerPath: 'productApi',
   tagTypes: ['product'],
   // keepUnusedDataFor: 100,
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API ?? 'http://localhost:5000/' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.REACT_APP_API || 'http://localhost:5000/'
+  }),
   refetchOnReconnect: true,
   endpoints: (build) => ({
     getProduct: build.query<product[], void>({
