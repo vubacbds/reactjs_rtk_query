@@ -4,7 +4,7 @@ import { product } from 'types/product.type'
 import { useAddProductMutation, useUpdateProductMutation } from 'page/product/product.service'
 import { isEntityError } from 'utils/helpers'
 import { storage } from '../../../../firebase'
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import './style.css'
 
 interface createUpdateProductType {
@@ -192,7 +192,29 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
   }
   //Đóng xử lý upload ảnh
 
-  const UploadCpn = () => {}
+  const handleImageLeft = (array: string[], indexChoose: number, item: string) => {
+    if (indexChoose !== 0) {
+      const filter = array.filter((res, index) => index !== indexChoose)
+      filter.splice(indexChoose - 1, 0, item)
+      setDataUpdate({ ...productUpdate, images: filter })
+    } else {
+      const filter = array.filter((res, index) => index !== indexChoose)
+      filter.splice(filter.length, 0, item)
+      setDataUpdate({ ...productUpdate, images: filter })
+    }
+  }
+
+  const handleImageRight = (array: string[], indexChoose: number, item: string) => {
+    if (indexChoose !== array.length - 1) {
+      const filter = array.filter((res, index) => index !== indexChoose)
+      filter.splice(indexChoose + 1, 0, item)
+      setDataUpdate({ ...productUpdate, images: filter })
+    } else {
+      const filter = array.filter((res, index) => index !== indexChoose)
+      filter.splice(0, 0, item)
+      setDataUpdate({ ...productUpdate, images: filter })
+    }
+  }
 
   return (
     <div>
@@ -230,11 +252,19 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
                 dataUpdate?.images.map((image: any, index: any) => {
                   return (
                     <div className='div-image-old' key={index}>
-                      <img className='image-old' src={image} />{' '}
+                      <img className='image-old' src={image} />
                       <div className='box-icon-delete'>
+                        <ArrowLeftOutlined
+                          className='icon-image-left'
+                          onClick={() => handleImageLeft(dataUpdate?.images, index, image)}
+                        />
                         <DeleteOutlined
                           className='icon-delete-image-old'
                           onClick={() => handleDeleteImageUpdate(index)}
+                        />
+                        <ArrowRightOutlined
+                          className='icon-image-right'
+                          onClick={() => handleImageRight(dataUpdate?.images, index, image)}
                         />
                       </div>
                     </div>
