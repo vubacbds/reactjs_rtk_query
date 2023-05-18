@@ -60,8 +60,12 @@
 }
 
 .dichuyen {
-  animation: lenxuong 0.6s ease-out alternate;
-  animation-iteration-count: 6;
+  -moz-animation: lenxuong 0.6s ease-out alternate;
+  -webkit-animation: lenxuong 0.6s ease-out alternate;
+  -o-animation: lenxuong 0.6s ease-out alternate;
+  -moz-animation-iteration-count: 6;
+  -webkit-animation-iteration-count: 6;
+  -o-animation-iteration-count: 6;
 }
 
 .dichuyen::after {
@@ -77,7 +81,6 @@
   -moz-animation: off_lenxuong 0.6s ease-out alternate;
   -webkit-animation: off_lenxuong 0.6s ease-out alternate;
   -o-animation: off_lenxuong 0.6s ease-out alternate;
-
   -moz-animation-iteration-count: 6;
   -webkit-animation-iteration-count: 6;
   -o-animation-iteration-count: 6;
