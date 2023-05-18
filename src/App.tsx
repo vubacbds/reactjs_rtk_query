@@ -31,7 +31,7 @@ function App() {
       let shiftX = event.changedTouches[0].clientX - ball.getBoundingClientRect().left
       let shiftY = event.changedTouches[0].clientY - ball.getBoundingClientRect().top
 
-      ball.style.position = 'absolute'
+      // ball.style.position = 'absolute'
       ball.style.zIndex = 1000
       document.body.append(ball)
 
@@ -47,12 +47,13 @@ function App() {
         }
       }
 
-      moveAt(event.pageX, event.pageY)
+      //moveAt(event.pageX, event.pageY)
 
       function onMouseMove(event: any) {
         setXoay(false)
         document.body.style.overflow = 'hidden'
-        moveAt(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+        // moveAt(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+        moveAt(event.changedTouches[0].clientX, event.changedTouches[0].clientY)
       }
 
       ball.addEventListener('touchmove', onMouseMove)
@@ -75,7 +76,7 @@ function App() {
 
       let shiftX = event.clientX - ball.getBoundingClientRect().left
       let shiftY = event.clientY - ball.getBoundingClientRect().top
-      ball.style.position = 'absolute'
+      // ball.style.position = 'absolute'
       ball.style.zIndex = 1000
       const screenWidth = window.innerWidth - 38
       const screenHeight = window.innerHeight - 38
@@ -91,11 +92,13 @@ function App() {
         }
       }
 
-      moveAt(event.pageX, event.pageY)
+      // moveAt(event.pageX, event.pageY) //cho absolute
+      moveAt(event.clientX, event.clientY) //cho fixed
 
       function onMouseMove(event: any) {
         setXoay(false)
-        moveAt(event.pageX, event.pageY)
+        // moveAt(event.pageX, event.pageY) //cho absolute
+        moveAt(event.clientX, event.clientY) //cho fixed
       }
 
       document.addEventListener('mousemove', onMouseMove)
@@ -106,7 +109,7 @@ function App() {
       }
     }
 
-    ball.ondragstart = function () {
+    document.ondragstart = function () {
       return false
     }
   }
