@@ -48,3 +48,10 @@
 .no {
   color: #333;
 }
+
+#ball {
+  font-size: 30px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}

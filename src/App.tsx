@@ -9,8 +9,103 @@ import ProductDetailList1 from 'page/product/components/productDetailList1'
 import ProductDetailList2 from 'page/product/components/productDetailList2'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { useEffect, useRef, useState } from 'react'
+import { UseViewport } from 'utils/screen'
 
 function App() {
+  const viewPort = UseViewport()
+  const isMobile = viewPort.width <= 512
+
+  const [ball, setBall] = useState<any>()
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      setBall(ref.current)
+    }
+  }, [ref])
+
+  if (ball && isMobile) {
+    ball.ontouchstart = (event: any) => {
+      let shiftX = event.changedTouches[0].clientX - ball.getBoundingClientRect().left
+      let shiftY = event.changedTouches[0].clientY - ball.getBoundingClientRect().top
+
+      ball.style.position = 'absolute'
+      ball.style.zIndex = 1000
+      document.body.append(ball)
+
+      const screenWidth = window.innerWidth - 30
+      const screenHeight = window.innerHeight - 30
+
+      function moveAt(pageX: number, pageY: number) {
+        if (pageX - shiftX < screenWidth && pageX - shiftX > -10 && pageY - shiftY > 0) {
+          ball.style.left = pageX - shiftX + 'px'
+          ball.style.top = pageY - shiftY + 'px'
+        } else {
+          return
+        }
+      }
+
+      moveAt(event.pageX, event.pageY)
+
+      function onMouseMove(event: any) {
+        document.body.style.overflow = 'hidden'
+        moveAt(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+      }
+
+      document.addEventListener('touchmove', onMouseMove)
+
+      ball.ontouchend = function () {
+        document.removeEventListener('touchmove ', onMouseMove)
+        ball.ontouchend = null
+        document.body.style.overflow = 'scroll'
+      }
+    }
+
+    ball.ondragstart = function () {
+      return false
+    }
+  }
+
+  if (ball && !isMobile) {
+    ball.onmousedown = function (event: any) {
+      let shiftX = event.clientX - ball.getBoundingClientRect().left
+      let shiftY = event.clientY - ball.getBoundingClientRect().top
+      ball.style.position = 'absolute'
+      ball.style.zIndex = 1000
+      const screenWidth = window.innerWidth - 30
+      const screenHeight = window.innerHeight - 30
+
+      document.body.append(ball)
+
+      function moveAt(pageX: number, pageY: number) {
+        if (pageX - shiftX < screenWidth && pageX - shiftX > -10 && pageY - shiftY > 0) {
+          ball.style.left = pageX - shiftX + 'px'
+          ball.style.top = pageY - shiftY + 'px'
+        } else {
+          return
+        }
+      }
+
+      moveAt(event.pageX, event.pageY)
+
+      function onMouseMove(event: any) {
+        moveAt(event.pageX, event.pageY)
+      }
+
+      document.addEventListener('mousemove', onMouseMove)
+
+      ball.onmouseup = function () {
+        document.removeEventListener('mousemove', onMouseMove)
+        ball.onmouseup = null
+      }
+    }
+
+    ball.ondragstart = function () {
+      return false
+    }
+  }
+
   return (
     <div className='App'>
       <ScrollToTop>
@@ -27,6 +122,7 @@ function App() {
         </Routes>
       </ScrollToTop>
       <ToastContainer />
+      <i className='far fa-futbol' ref={ref} id='ball'></i>
     </div>
   )
 }

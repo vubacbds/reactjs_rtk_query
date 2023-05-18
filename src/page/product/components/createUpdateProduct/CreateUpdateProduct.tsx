@@ -22,20 +22,21 @@ type FormError =
   | null
 
 const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: createUpdateProductType) => {
-  const [dataUpdate, setDataUpdate] = useState<any>(productUpdate)
-  const handleDeleteImageUpdate = (indexImage: any) => {
-    const filter = dataUpdate?.images?.filter((image: any, index: any) => {
-      return index != indexImage
-    })
-
-    setDataUpdate({ ...productUpdate, images: filter })
+  const [dataUpdate, setDataUpdate] = useState<product>()
+  const handleDeleteImageUpdate = (indexImage: number) => {
+    if (dataUpdate) {
+      const filter = dataUpdate.images.filter((image: string, index: number) => {
+        return index != indexImage
+      })
+      setDataUpdate({ ...dataUpdate, images: filter })
+    }
   }
 
   const [form] = Form.useForm()
   useEffect(() => {
     form.resetFields()
     setFileList([])
-    setDataUpdate(productUpdate)
+    productUpdate && setDataUpdate(productUpdate)
   }, [productUpdate, closeModalCreateUpdateProduct])
 
   const [addProduct, addProductResult] = useAddProductMutation()
@@ -151,7 +152,7 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
     setSubmitting(true)
     valuForm.images = []
 
-    if (productUpdate && fileList.length == 0) {
+    if (dataUpdate && fileList.length == 0) {
       handleUpdateProduct({ ...valuForm, images: dataUpdate.images })
     }
 
@@ -177,7 +178,7 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
               valuForm.images.push(newUrl)
 
               //Chạy hàm thêm Product khi ảnh upload lên đủ
-              if (fileList.length == valuForm.images.length && productUpdate) {
+              if (fileList.length == valuForm.images.length && dataUpdate) {
                 handleUpdateProduct({ ...valuForm, images: [...dataUpdate.images, ...valuForm.images] })
               } else if (fileList.length == valuForm.images.length) {
                 handleAddProduct(valuForm)
@@ -193,26 +194,26 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
   //Đóng xử lý upload ảnh
 
   const handleImageLeft = (array: string[], indexChoose: number, item: string) => {
-    if (indexChoose !== 0) {
+    if (indexChoose !== 0 && dataUpdate) {
       const filter = array.filter((res, index) => index !== indexChoose)
       filter.splice(indexChoose - 1, 0, item)
-      setDataUpdate({ ...productUpdate, images: filter })
-    } else {
+      setDataUpdate({ ...dataUpdate, images: filter })
+    } else if (dataUpdate) {
       const filter = array.filter((res, index) => index !== indexChoose)
       filter.splice(filter.length, 0, item)
-      setDataUpdate({ ...productUpdate, images: filter })
+      setDataUpdate({ ...dataUpdate, images: filter })
     }
   }
 
   const handleImageRight = (array: string[], indexChoose: number, item: string) => {
-    if (indexChoose !== array.length - 1) {
+    if (indexChoose !== array.length - 1 && dataUpdate) {
       const filter = array.filter((res, index) => index !== indexChoose)
       filter.splice(indexChoose + 1, 0, item)
-      setDataUpdate({ ...productUpdate, images: filter })
-    } else {
+      setDataUpdate({ ...dataUpdate, images: filter })
+    } else if (dataUpdate) {
       const filter = array.filter((res, index) => index !== indexChoose)
       filter.splice(0, 0, item)
-      setDataUpdate({ ...productUpdate, images: filter })
+      setDataUpdate({ ...dataUpdate, images: filter })
     }
   }
 
@@ -244,7 +245,7 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
         <Form.Item
           label='Chọn ảnh'
           name='images'
-          rules={[{ required: productUpdate && dataUpdate?.images.length > 0 ? false : true, message: 'Chưa có ảnh!' }]}
+          rules={[{ required: dataUpdate && dataUpdate?.images.length > 0 ? false : true, message: 'Chưa có ảnh!' }]}
         >
           <div>
             <div className='image-old-box'>
