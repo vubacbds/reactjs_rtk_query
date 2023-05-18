@@ -73,8 +73,14 @@
   position: absolute;
   left: 0px;
   top: 74px;
-  animation: off_lenxuong 0.6s ease-out alternate;
-  animation-iteration-count: 6;
+
+  -moz-animation: off_lenxuong 0.6s ease-out alternate;
+  -webkit-animation: off_lenxuong 0.6s ease-out alternate;
+  -o-animation: off_lenxuong 0.6s ease-out alternate;
+
+  -moz-animation-iteration-count: 6;
+  -webkit-animation-iteration-count: 6;
+  -o-animation-iteration-count: 6;
 }
 
 @keyframes lenxuong {
