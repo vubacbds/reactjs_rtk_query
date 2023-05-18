@@ -27,6 +27,7 @@ function App() {
 
   if (ball && isMobile) {
     ball.ontouchstart = (event: any) => {
+      setXoay(true)
       let shiftX = event.changedTouches[0].clientX - ball.getBoundingClientRect().left
       let shiftY = event.changedTouches[0].clientY - ball.getBoundingClientRect().top
 
@@ -34,8 +35,8 @@ function App() {
       ball.style.zIndex = 1000
       document.body.append(ball)
 
-      const screenWidth = window.innerWidth - 30
-      const screenHeight = window.innerHeight - 30
+      const screenWidth = window.innerWidth - 38
+      const screenHeight = window.innerHeight - 38
 
       function moveAt(pageX: number, pageY: number) {
         if (pageX - shiftX < screenWidth && pageX - shiftX > -10 && pageY - shiftY > 0) {
@@ -49,15 +50,16 @@ function App() {
       moveAt(event.pageX, event.pageY)
 
       function onMouseMove(event: any) {
+        setXoay(false)
         document.body.style.overflow = 'hidden'
         moveAt(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
       }
 
-      document.addEventListener('touchmove', onMouseMove)
+      ball.addEventListener('touchmove', onMouseMove)
 
       ball.ontouchend = function () {
-        document.removeEventListener('touchmove ', onMouseMove)
-        ball.ontouchend = null
+        ball.removeEventListener('touchmove ', onMouseMove)
+        // ball.ontouchend = null
         document.body.style.overflow = 'scroll'
       }
     }
@@ -69,12 +71,14 @@ function App() {
 
   if (ball && !isMobile) {
     ball.onmousedown = function (event: any) {
+      setXoay(true)
+
       let shiftX = event.clientX - ball.getBoundingClientRect().left
       let shiftY = event.clientY - ball.getBoundingClientRect().top
       ball.style.position = 'absolute'
       ball.style.zIndex = 1000
-      const screenWidth = window.innerWidth - 30
-      const screenHeight = window.innerHeight - 30
+      const screenWidth = window.innerWidth - 38
+      const screenHeight = window.innerHeight - 38
 
       document.body.append(ball)
 
@@ -90,6 +94,7 @@ function App() {
       moveAt(event.pageX, event.pageY)
 
       function onMouseMove(event: any) {
+        setXoay(false)
         moveAt(event.pageX, event.pageY)
       }
 
@@ -105,6 +110,8 @@ function App() {
       return false
     }
   }
+
+  const [xoay, setXoay] = useState(false)
 
   return (
     <div className='App'>
@@ -122,7 +129,7 @@ function App() {
         </Routes>
       </ScrollToTop>
       <ToastContainer />
-      <i className='far fa-futbol' ref={ref} id='ball'></i>
+      <i className={xoay ? 'far fa-futbol dichuyen' : 'far fa-futbol'} ref={ref} id='ball'></i>
     </div>
   )
 }
