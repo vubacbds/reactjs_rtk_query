@@ -7,6 +7,7 @@ const Ball = () => {
   const isMobile = viewPort.width <= 512
 
   const [ball, setBall] = useState<any>()
+  const [xoay, setXoay] = useState(true)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -122,10 +123,11 @@ const Ball = () => {
     return false
   }
 
-  const [xoay, setXoay] = useState(false)
   return (
     <div>
-      <i className={xoay ? 'far fa-futbol dichuyen' : 'far fa-futbol'} ref={ref} id='ball'></i>
+      <i className={xoay ? 'dichuyen far fa-futbol' : 'far fa-futbol'} ref={ref} id='ball'>
+        <div className={xoay ? 'nenbong' : ''}></div>
+      </i>
     </div>
   )
 }
