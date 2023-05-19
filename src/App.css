@@ -107,7 +107,7 @@
 @keyframes off_lenxuong {
   from {
     transform: translateY(0);
-    background-color: transparent;
+    background-color: red;
   }
   to {
     transform: translateY(-36px);
@@ -118,7 +118,7 @@
 @-webkit-keyframes off_lenxuong {
   from {
     transform: translateY(0);
-    background-color: transparent;
+    background-color: red;
   }
   to {
     transform: translateY(-36px);
