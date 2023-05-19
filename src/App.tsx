@@ -35,15 +35,20 @@ function App() {
       ball.style.zIndex = 1000
       document.body.append(ball)
 
-      const screenWidth = window.innerWidth - 38
-      const screenHeight = window.innerHeight - 38
+      const screenWidth = window.innerWidth - 40
+      const screenHeight = window.innerHeight - 40
 
       function moveAt(pageX: number, pageY: number) {
-        if (pageX - shiftX < screenWidth && pageX - shiftX > -10 && pageY - shiftY > 0) {
+        if (
+          pageX - shiftX < screenWidth &&
+          pageX - shiftX > -10 &&
+          pageY - shiftY > 0 &&
+          pageY - shiftY < screenHeight
+        ) {
           ball.style.left = pageX - shiftX + 'px'
           ball.style.top = pageY - shiftY + 'px'
         } else {
-          return
+          document.removeEventListener('mousemove', onMouseMove)
         }
       }
 
@@ -60,8 +65,8 @@ function App() {
 
       ball.ontouchend = function () {
         ball.removeEventListener('touchmove ', onMouseMove)
-        // ball.ontouchend = null
         document.body.style.overflow = 'scroll'
+        // ball.ontouchend = null
       }
     }
 
@@ -70,6 +75,7 @@ function App() {
     }
   }
 
+  //màn hình máy tính
   if (ball && !isMobile) {
     ball.onmousedown = function (event: any) {
       setXoay(true)
@@ -78,17 +84,22 @@ function App() {
       let shiftY = event.clientY - ball.getBoundingClientRect().top
       // ball.style.position = 'absolute'
       ball.style.zIndex = 1000
-      const screenWidth = window.innerWidth - 38
-      const screenHeight = window.innerHeight - 38
+      const screenWidth = window.innerWidth - 40
+      const screenHeight = window.innerHeight - 40
 
       document.body.append(ball)
 
       function moveAt(pageX: number, pageY: number) {
-        if (pageX - shiftX < screenWidth && pageX - shiftX > -10 && pageY - shiftY > 0) {
+        if (
+          pageX - shiftX < screenWidth &&
+          pageX - shiftX > -10 &&
+          pageY - shiftY > 0 &&
+          pageY - shiftY < screenHeight
+        ) {
           ball.style.left = pageX - shiftX + 'px'
           ball.style.top = pageY - shiftY + 'px'
         } else {
-          return
+          document.removeEventListener('mousemove', onMouseMove)
         }
       }
 
@@ -103,15 +114,22 @@ function App() {
 
       document.addEventListener('mousemove', onMouseMove)
 
-      ball.onmouseup = function () {
+      ball.onmouseup = function (e: any) {
         document.removeEventListener('mousemove', onMouseMove)
-        ball.onmouseup = null
+        // ball.onmouseup = null
+        console.log('da tha')
       }
     }
 
+    ball.ondragstart = function () {
+      return false
+    }
     document.ondragstart = function () {
       return false
     }
+  }
+  window.ondragstart = function () {
+    return false
   }
 
   const [xoay, setXoay] = useState(false)
