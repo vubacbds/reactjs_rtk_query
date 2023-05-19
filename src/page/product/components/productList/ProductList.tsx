@@ -60,11 +60,12 @@ const ProductList = () => {
 
   return (
     <div>
-      <h2 style={{ margin: '12px 0', cursor: 'pointer' }} onClick={() => handleAddProduct()} title='Tạo nhanh sản phẩm'>
-        Danh sách sản phẩm{' '}
-      </h2>
+      <h2 style={{ margin: '12px 0' }}>Danh sách sản phẩm</h2>
       <Button type='primary' onClick={showModalCreateUpdateProduct}>
         Thêm
+      </Button>
+      <Button type='default' style={{ marginLeft: 4 }} onClick={() => handleAddProduct()} title='Tạo nhanh sản phẩm'>
+        Thêm nhanh
       </Button>
       <Modal
         title={productUpdate ? 'Sửa sản phẩm' : 'Thêm sản phẩm'}

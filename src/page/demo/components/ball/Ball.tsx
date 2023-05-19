@@ -125,7 +125,12 @@ const Ball = () => {
 
   return (
     <div>
-      <i className={xoay ? 'dichuyen far fa-futbol' : 'far fa-futbol'} ref={ref} id='ball'>
+      <i
+        className={xoay ? 'dichuyen far fa-futbol' : 'far fa-futbol'}
+        ref={ref}
+        id='ball'
+        title='Dùng để demo nhấn kéo element'
+      >
         <div className={xoay ? 'nenbong' : ''}></div>
       </i>
     </div>
