@@ -55,7 +55,7 @@ const ProductDetail = () => {
                 <Slider
                   {...settings}
                   arrows={false}
-                  slidesToShow={2}
+                  slidesToShow={data && data.images.length >= 4 ? 4 : 3}
                   swipeToSlide={true}
                   focusOnSelect={true}
                   ref={(slider2) => setNav2(slider2)}

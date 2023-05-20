@@ -36,7 +36,7 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
   useEffect(() => {
     form.resetFields()
     setFileList([])
-    productUpdate && setDataUpdate(productUpdate)
+    productUpdate ? setDataUpdate(productUpdate) : setDataUpdate(undefined)
   }, [productUpdate, closeModalCreateUpdateProduct])
 
   const [addProduct, addProductResult] = useAddProductMutation()
@@ -114,15 +114,15 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
   const handleCancel = () => setPreviewVisible(false)
 
   const handleChange = (e: any) => {
-    //Xử lý file quá 4 ảnh
-    if (e.fileList.length > 4 && !dataUpdate) {
-      alert('Chỉ được đăng 4 ảnh!')
+    //Xử lý file quá 6 ảnh
+    if (e.fileList.length > 6 && !dataUpdate) {
+      alert('Chỉ được đăng 6 ảnh!')
       e.preventDefault()
       return
     }
 
-    if (e.fileList.length + dataUpdate?.images.length > 4) {
-      alert('Chỉ được đăng 4 ảnh!')
+    if (e.fileList.length + dataUpdate?.images.length > 6) {
+      alert('Chỉ được đăng 6 ảnh!')
       e.preventDefault()
       return
     }
@@ -221,8 +221,8 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
     <div>
       <Form
         form={form}
-        labelCol={{ span: 2 }}
-        wrapperCol={{ span: 22 }}
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
         style={{ maxWidth: '100%', marginTop: 40 }}
         initialValues={{
           title: productUpdate?.title,
@@ -285,8 +285,8 @@ const CreateUpdateProduct = ({ closeModalCreateUpdateProduct, productUpdate }: c
                   return false
                 }}
               >
-                {((dataUpdate && fileList.length + dataUpdate?.images.length < 4) ||
-                  (!dataUpdate && fileList.length < 4)) && (
+                {((dataUpdate && fileList.length + dataUpdate?.images.length < 6) ||
+                  (!dataUpdate && fileList.length < 6)) && (
                   <div>
                     <PlusOutlined />
                     <div style={{ marginTop: 8 }}>Thêm ảnh</div>

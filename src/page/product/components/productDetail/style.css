@@ -193,8 +193,7 @@
 }
 
 .slider-image {
-  width: 50px;
-  height: 160px;
+  height: 96px;
   cursor: pointer;
 }
 
@@ -219,9 +218,10 @@
     position: relative;
     right: 0px !important;
   }
+
   .slider-image {
     width: 60px;
-    height: 90px;
+    height: 50px;
   }
 }
 
