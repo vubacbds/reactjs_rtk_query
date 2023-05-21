@@ -77,15 +77,16 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-zoom-body {
   position: absolute;
-  width: 62%;
-  height: 86%;
+  width: 70%;
+  height: 90%;
   display: block;
-  background: #fff;
+  background: transparent;
+  overflow: hidden;
 }
 
 .modal-zoom-close {
@@ -107,8 +108,7 @@
 }
 
 .modal-zoom .img-slick {
-  position: relative !important;
-  height: 86vh !important;
+  height: 100% !important;
   width: 100% !important;
 }
 
@@ -126,35 +126,6 @@
   font-size: 40px !important;
   position: relative;
   right: -12px !important;
-}
-
-@media (max-width: 600px) {
-  .modal-zoom-body {
-    position: absolute;
-    width: 80%;
-    height: 50%;
-    display: block;
-    background-color: #fff;
-  }
-  .modal-zoom .img-slick {
-    position: relative !important;
-    height: 50vh !important;
-    width: 100% !important;
-  }
-  .modal-zoom .slick-prev:before {
-    content: '<i class=' gg-arrow-left-o '></i>' !important;
-    color: #fff !important;
-    font-size: 26px !important;
-    position: relative;
-    left: -4px !important;
-  }
-  .modal-zoom .slick-next:before {
-    content: '<i class=' gg-arrow-right-o '></i>' !important;
-    color: #fff !important;
-    font-size: 26px !important;
-    position: relative;
-    right: 0px !important;
-  }
 }
 
 .modal-zoom .slick-slide div {
@@ -178,7 +149,7 @@
 
 .detail-product-image .slick-prev:before {
   content: '<i class=' gg-arrow-left-o '></i>' !important;
-  color: #333 !important;
+  color: #a5a2a4 !important;
   font-size: 40px !important;
   position: relative;
   left: -36px !important;
@@ -186,7 +157,7 @@
 
 .detail-product-image .slick-next:before {
   content: '<i class=' gg-arrow-right-o '></i>' !important;
-  color: #333 !important;
+  color: #a5a2a4 !important;
   font-size: 40px !important;
   position: relative;
   right: -12px !important;
@@ -206,14 +177,14 @@
 
   .detail-product-image .slick-prev:before {
     content: '<i class=' gg-arrow-left-o '></i>' !important;
-    color: #333 !important;
+    color: #a5a2a4 !important;
     font-size: 26px !important;
     position: relative;
     left: -4px !important;
   }
   .detail-product-image .slick-next:before {
     content: '<i class=' gg-arrow-right-o '></i>' !important;
-    color: #333 !important;
+    color: #a5a2a4 !important;
     font-size: 26px !important;
     position: relative;
     right: 0px !important;

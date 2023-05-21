@@ -6,8 +6,12 @@ import Slider from 'react-slick'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 import './style.css'
+import { UseViewport } from 'utils/screen'
 
 const ProductDetail = () => {
+  const viewPort = UseViewport()
+  const isMobile = viewPort.width <= 512
+
   const params = useParams()
   const productId = params?.productId
   const { data, isFetching, isLoading } = useGetOneProductQuery(productId)
@@ -49,7 +53,8 @@ const ProductDetail = () => {
                   return <img height={300} alt='example' src={image} key={index} />
                 })}
               </Slider>
-              <FullscreenOutlined className='icon-zoom' onClick={() => setIsModalZoom(true)} />
+
+              {!isMobile && <FullscreenOutlined className='icon-zoom' onClick={() => setIsModalZoom(true)} />}
 
               <div className='slider-2'>
                 <Slider
@@ -72,7 +77,7 @@ const ProductDetail = () => {
           <div className={isModalZoom ? 'modal-zoom' : 'hidden-modal'}>
             <div className='modal-zoom-overlay'></div>
             <div className='modal-zoom-body'>
-              <Slider {...settings}>
+              <Slider {...settings} arrows={false}>
                 {data?.images?.map((image, index) => {
                   return (
                     <TransformWrapper key={index}>
