@@ -1,12 +1,13 @@
 import { useGetOneProductQuery } from 'page/product/product.service'
 import React, { useEffect, useState } from 'react'
-import { CloseOutlined, FullscreenOutlined, HomeOutlined } from '@ant-design/icons'
+import { CloseOutlined, FullscreenOutlined, HomeOutlined, LoadingOutlined } from '@ant-design/icons'
 import { Link, NavLink, Outlet, useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 import './style.css'
 import { UseViewport } from 'utils/screen'
+import { Spin } from 'antd'
 
 const ProductDetail = () => {
   const viewPort = UseViewport()
@@ -36,9 +37,18 @@ const ProductDetail = () => {
   const [nav1, setNav1] = useState<any>(null)
   const [nav2, setNav2] = useState<any>(null)
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+
   return (
     <div>
-      {isFetching && <h5>Loading...</h5>}
+      {isFetching && (
+        <>
+          <h5>
+            <Spin indicator={antIcon} />
+          </h5>
+          Loading
+        </>
+      )}
       {!isFetching && (
         <>
           <Link to='/'>
