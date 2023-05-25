@@ -58,7 +58,12 @@ const ProductDetail = () => {
 
           <div className='detail-product'>
             <div className='detail-product-image'>
-              <Slider {...settings} ref={(slider1) => setNav1(slider1)} asNavFor={nav2}>
+              <Slider
+                {...settings}
+                ref={(slider1) => setNav1(slider1)}
+                asNavFor={nav2}
+                arrows={isMobile ? false : true}
+              >
                 {data?.images?.map((image, index) => {
                   return <img height={300} alt='example' src={image} key={index} />
                 })}
