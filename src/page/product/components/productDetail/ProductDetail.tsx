@@ -37,7 +37,7 @@ const ProductDetail = () => {
   const [nav1, setNav1] = useState<any>(null)
   const [nav2, setNav2] = useState<any>(null)
 
-  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+  const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#333' }} spin />
 
   return (
     <div>
