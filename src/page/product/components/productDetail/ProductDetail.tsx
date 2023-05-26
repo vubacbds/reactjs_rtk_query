@@ -11,7 +11,7 @@ import { Spin } from 'antd'
 
 const ProductDetail = () => {
   const viewPort = UseViewport()
-  const isMobile = viewPort.width <= 512
+  const isMobile = viewPort.width <= 860
 
   const params = useParams()
   const productId = params?.productId
